@@ -1,0 +1,3 @@
+#!/bin/sh
+
+am startservice -n com.termux/com.termux.app.RunCommandService -a com.termux.RUN_COMMAND --es com.termux.RUN_COMMAND_PATH '/data/data/com.termux/files/usr/bin/login'
