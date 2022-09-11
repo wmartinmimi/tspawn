@@ -11,6 +11,7 @@ It works by calling the activity manager.
 ### Installation
 
 ```bash
+apt install wget
 cd $PREFIX/bin
 wget https://raw.githubusercontent.com/wmartinmimi/tspawn/main/tspawn
 chmod 700 tspawn
