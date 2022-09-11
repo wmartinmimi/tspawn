@@ -18,6 +18,8 @@ chmod 700 tspawn
 
 ### Usage
 
+Enter the following command to spawn new shells:
+
 ```bash
 tspawn
 ```
