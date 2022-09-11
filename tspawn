@@ -1,3 +1,40 @@
-#!/bin/sh
+#!/bin/bash
 
-am startservice -n com.termux/com.termux.app.RunCommandService -a com.termux.RUN_COMMAND --es com.termux.RUN_COMMAND_PATH '/data/data/com.termux/files/usr/bin/login'
+_repeat=""
+if [ -n "$1" ]; then
+  if [ "$1" == "-h" ]; then
+    echo "help manual:"
+    echo
+    echo "tspawn is a terminal spawner for termux."
+    echo "It can bypass the limit of 8 shells."
+    echo "-----"
+    echo
+    echo "to use:"
+    echo
+    echo "tspawn"
+    echo -e "\tspawns 1 shell"
+    echo
+    echo "tspawn <int>"
+    echo -e "\tspawns <int> shells"
+    echo "-----"
+    echo
+    echo "flags:"
+    echo
+    echo "-h"
+    echo -e "\tshows this help screen"
+    echo
+    exit 0
+  elif [[ "$1" =~ ^[0-9]+$ ]]; then
+    _repeat="$1"
+  else
+    echo "no such option: $1"
+    exit 2
+  fi
+else
+  _repeat="1"
+fi
+
+for i in $(seq 1 $_repeat); do
+  am startservice -n com.termux/com.termux.app.RunCommandService -a com.termux.RUN_COMMAND --es com.termux.RUN_COMMAND_PATH '/data/data/com.termux/files/usr/bin/login' >/dev/null &
+done
+exit 0
